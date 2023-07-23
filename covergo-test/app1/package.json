@@ -1,0 +1,14 @@
+{
+  "name": "current-time-app",
+  "version": "1.0.0",
+  "description": "HTTP application that shows the current time",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "jahid anwar",
+  "license": "MIT"
+}

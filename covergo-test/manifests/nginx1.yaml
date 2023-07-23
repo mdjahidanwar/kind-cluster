@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx1
+  template:
+    metadata:
+      labels:
+        app: nginx1
+    spec:
+      volumes:
+        - name: nginx-storage
+          persistentVolumeClaim:
+            claimName: nginx-pvc            
+      containers:
+      - name: nginx-container
+        image: nginx:latest
+        ports:
+        - containerPort: 8282
+          hostPort: 8282  # This is optional, but if you want to map the container port to the same host port, you can include this line.
+        volumeMounts:
+          - name: nginx-storage
+            mountPath: /data
+        command: ["nginx"]
+        args: ["-g", "daemon off;", "-c", "/etc/nginx/nginx.conf"]
